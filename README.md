@@ -1,4 +1,4 @@
-# quran_shamil
+# Al-Quran Al-Shamil القرآن الشامل
 
 A new Flutter project.
 
