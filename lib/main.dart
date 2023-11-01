@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quran_shamil/providers/SplashScreenProvider.dart';
+import 'package:quran_shamil/screens/HomeScreen.dart';
 import 'package:quran_shamil/screens/SplashScreen.dart';
+import 'package:quran_shamil/utils/Colors.dart';
 
 void main() {
   runApp(
@@ -24,16 +26,28 @@ class MyApp extends StatelessWidget {
     final splashProvider = Provider.of<SplashProvider>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
       routes: {
-        '/home': (context) => const MyHomePage(title: 'Al-Quran Al-Shamil'),
+        '/home': (context) => const HomeScreen(),
       },
       title: 'Al-Quran Al-Shamil',
+      // the Dark Them :
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        primarySwatch: Colors.blue,
+        primaryColor: AppColors.primary,
+        primaryColorDark: AppColors.primaryDark,
+        primaryColorLight: AppColors.primaryLight,
         useMaterial3: true,
       ),
+      // the Dark Them :
+      darkTheme: ThemeData(
+        primarySwatch: Colors.blue,
+        primaryColor: AppColors.primary,
+        primaryColorDark: AppColors.primaryDark,
+        primaryColorLight: AppColors.primaryLight,
+      ),
       home: splashProvider.seenSplash
-          ? const MyHomePage(title: 'Al-Quran Al-Shamil',) // Replace with your main app screen
+          ? const HomeScreen() // Replace with your main app screen
           : SplashScreen(),
     );
   }
