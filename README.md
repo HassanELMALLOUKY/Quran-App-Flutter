@@ -1,6 +1,6 @@
 # Al-Quran Al-Shamil القرآن الشامل
 
-A new Flutter project.
+![Alt Text](Desktop/flutter/quran_shamil/assets/images/App_UI.png)
 
 ## Getting Started
 
