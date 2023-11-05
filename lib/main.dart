@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quran_shamil/providers/SplashScreenProvider.dart';
+import 'package:quran_shamil/providers/SurahProvider.dart';
 import 'package:quran_shamil/screens/HomeScreen.dart';
 import 'package:quran_shamil/screens/SplashScreen.dart';
 import 'package:quran_shamil/utils/Colors.dart';
@@ -10,6 +11,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SplashProvider()),
+        ChangeNotifierProvider(create: (_)=>SurahProvider()),
       ],
       child: const MyApp(),
     ),
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final splashProvider = Provider.of<SplashProvider>(context);
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
 
       routes: {
         '/home': (context) => const HomeScreen(),
