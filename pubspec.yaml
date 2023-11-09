@@ -40,6 +40,9 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  fluid_dialog: ^2.0.0
+  feather_icons: ^1.2.0
+  device_preview: ^1.1.0
 
 dev_dependencies:
   build_runner: any
@@ -73,7 +76,14 @@ flutter:
      - assets/data/quran_ar.json
      - assets/images/aya_icon.svg
      - assets/images/aya_1.svg
-     - assets/images/head_of_surah.svg
+     - assets/images/head_soura.svg
+     - assets/images/Basmala.svg
+     - assets/images/quran.svg
+     - assets/images/new_head_surah.svg
+     - assets/images/Sura_border.svg
+     - assets/images/kaaba.png
+     - assets/images/masjid_nabawi.png
+     - assets/images/bg_image.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -93,6 +103,12 @@ flutter:
     - family: MADDINA
       fonts:
         - asset: assets/fonts/quran-majeed.ttf
+    - family: AlMajeed
+      fonts:
+        - asset: assets/fonts/Al Majeed Quranic Font_shiped.ttf
+    - family: AlQalam
+      fonts:
+        - asset: assets/fonts/Al Qalam Quran.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

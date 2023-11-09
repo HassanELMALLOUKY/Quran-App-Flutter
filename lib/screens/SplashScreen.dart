@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/SplashScreenProvider.dart';
@@ -26,21 +27,12 @@ class SplashScreen extends StatelessWidget {
             const Text("Choose Your Language:",style: TextStyle(fontSize: 20,color: Colors.black),),
             const SizedBox(height: 20),
             Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
-                border: Border.all(),
-              ),
               padding: const EdgeInsets.all(8.0),
               child: DropdownButton<String>(
                 value: context.watch<SplashProvider>().language,
-                icon: const Icon(Icons.arrow_drop_down),
                 iconSize: 24,
                 elevation: 16,
                 style: const TextStyle(color: Colors.black, fontSize: 18),
-                underline: Container(
-                  height: 2,
-                  color: Colors.black,
-                ),
                 onChanged: (String? newValue) {
                       context.read<SplashProvider>().language=newValue!;
                 },
@@ -62,7 +54,9 @@ class SplashScreen extends StatelessWidget {
                 }).toList(),
               ),
             ),
-            Image.asset('assets/images/quran-icon-splash-screen.png'), // Replace with your image asset
+            SvgPicture.asset('assets/images/quran.svg',
+              placeholderBuilder: (BuildContext context)=>const CircularProgressIndicator(),
+              height: MediaQuery.sizeOf(context).height/2,width: MediaQuery.sizeOf(context).width,), // Replace with your image asset
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
