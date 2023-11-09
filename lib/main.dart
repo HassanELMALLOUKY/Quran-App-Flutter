@@ -1,20 +1,48 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:quran_shamil/providers/DialogProvider.dart';
 import 'package:quran_shamil/providers/SplashScreenProvider.dart';
 import 'package:quran_shamil/providers/SurahProvider.dart';
 import 'package:quran_shamil/screens/HomeScreen.dart';
 import 'package:quran_shamil/screens/SplashScreen.dart';
 import 'package:quran_shamil/utils/Colors.dart';
+import 'package:quran_shamil/utils/ImageUtils.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Preload the SVG images.
+  ImageUtils.svgPrecacheImage();
+  /*final loader = SvgAssetLoader();
+  await loader.loadAsset('assets/my_image.svg');
+  await loader.loadAsset('assets/my_other_image.svg');*/
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => SplashProvider()),
-        ChangeNotifierProvider(create: (_)=>SurahProvider()),
+      /*MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => SplashProvider()),
+          ChangeNotifierProvider(create: (_)=>SurahProvider()),
+          ChangeNotifierProvider(create: (_)=>DialogProvider()),
+        ],
+        child: const MyApp(),
+      )*/
+    DevicePreview(
+      enabled: true,
+      tools: const [
+        ...DevicePreview.defaultTools,
       ],
-      child: const MyApp(),
-    ),
+      builder: (BuildContext context) {
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (_) => SplashProvider()),
+            ChangeNotifierProvider(create: (_)=>SurahProvider()),
+            ChangeNotifierProvider(create: (_)=>DialogProvider()),
+          ],
+          child: const MyApp(),
+        );
+      },
+
+    )
   );
 }
 
@@ -27,7 +55,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final splashProvider = Provider.of<SplashProvider>(context);
     return MaterialApp(
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
 
       routes: {
         '/home': (context) => const HomeScreen(),
