@@ -9,43 +9,35 @@ import '../models/Surah_Verses.dart';
 
 class SurahProvider extends ChangeNotifier{
 
-  Surah? _surah;
+  Surah? surah;
+  List<Surah?> listSurah=[];
+  int indexSurah=0;
 
-
-  Surah? get surah => _surah;
-
-  Future<Surah?> getSurah(int surahNumber) async {
-    try {
-      final String response = await rootBundle.loadString('assets/data/quran_ar.json');
-      final List<dynamic> jsonData = json.decode(response);
-
-      if (jsonData.isNotEmpty) {
-        Surah surah = Surah.fromJson(jsonData[surahNumber]);
-        print(surah.name);
-        return surah;
-      } else {
-        print('JSON data is empty.');
-        return null;
-      }
-    } catch (e) {
-      return null;
-    }
-    finally{
-       notifyListeners();
+  void increment(int surahNumber) {
+    indexSurah=surahNumber-1;
+    notifyListeners();
+  }
+  void nextSurah(){
+    if(indexSurah<114){
+      indexSurah++;
+      surah=listSurah[indexSurah];
+      notifyListeners();
     }
   }
 
-  Widget makeAyaSvg(){
-    return SvgPicture.asset('assets/images/aya_1.svg',
-      height: 40,width: 40,color: Colors.blueAccent,);
-  }
 
-
-  void fetchData(int surahIndex) async {
+  void fetchData() async {
     final response = await rootBundle.loadString('assets/data/quran_ar.json');
     final List<dynamic> jsonData = json.decode(response);
+    jsonData.forEach((element) {
+      listSurah.add(Surah.fromJson(element));
+    });
     notifyListeners();
-    _surah= Surah.fromJson(jsonData[surahIndex]);
+  }
+
+  void fetchSurah(int surahNumber) {
+    surah=listSurah[surahNumber];
+    notifyListeners();
   }
 
 
