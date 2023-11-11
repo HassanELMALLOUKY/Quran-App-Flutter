@@ -109,6 +109,9 @@ flutter:
     - family: AlQalam
       fonts:
         - asset: assets/fonts/Al Qalam Quran.ttf
+    - family: Lafadz
+      fonts:
+        - asset: assets/fonts/Lafadz.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

@@ -53,7 +53,7 @@ class TestDialog extends StatelessWidget {
                   child: Icon(FeatherIcons.playCircle)),
             ],
           ),
-          SizedBox(height: 5,),
+          SizedBox(height: 10,),
           TextButton(
             onPressed: () => DialogNavigator.of(context).close(),
             child: const Icon(Icons.close_rounded,size: 30),
